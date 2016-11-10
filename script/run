@@ -24,7 +24,5 @@ docker run \
   --name nginx-image-server \
   -p 80:80 \
   -p 8090:8090 \
-  -v ${BASE_DIRECTORY}/examples:/var/www/nginx/images/ \
   -e "SERVER_NAME=${SERVER_NAME}" \
-  -e "S3_HOST=${S3_HOST}" \
-  quay.io/wantedly/nginx-image-server:latest
+  us.gcr.io/curtmfg/nginx-image-server:latest

@@ -6,12 +6,12 @@ build:
         code: |
           docker -v
     - script:
-        name: Build quay.io/wantedly/nginx-image-server
+        name: Build us.gcr.io/curtmfg/nginx-image-server
         code: |
           cd ${WERCKER_SOURCE_DIR}
-          docker build -t quay.io/wantedly/nginx-image-server .
+          docker build -t us.gcr.io/curtmfg/nginx-image-server .
     - script:
-        name: Run quay.io/wantedly/nginx-image-server
+        name: Run us.gcr.io/curtmfg/nginx-image-server
         code: >
           script/run -d
     - script:

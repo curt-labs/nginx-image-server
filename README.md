@@ -1,6 +1,4 @@
 # Nginx Image Server
-[![Docker Repository on Quay.io](https://quay.io/repository/wantedly/nginx-image-server/status "Docker Repository on Quay.io")](https://quay.io/repository/wantedly/nginx-image-server)
-[![Build Status](https://travis-ci.org/wantedly/nginx-image-server.svg)](https://travis-ci.org/wantedly/nginx-image-server)
 
 Docker Image for [Nginx](http://nginx.org/) server for image processing with [ngx_small_light](https://github.com/cubicdaiya/ngx_small_light).
 It supports resizing/cropping/formatting (`png`, `webp`...etc) of images stored in local storages or AWS S3.
@@ -18,11 +16,7 @@ Please see https://github.com/cubicdaiya/ngx_small_light for more information ab
 
 ```bash
 # Get the docker image
-$ docker pull quay.io/wantedly/nginx-image-server
-
-# Fetch an example image to try image-processing local image
-$ curl -L https://raw.githubusercontent.com/wantedly/nginx-image-server/master/examples/example.jpg > \
-    /tmp/example.jpg
+$ docker pull us.gcr.io/curtmfg/nginx-image-server
 
 # Start the image server
 $ docker run \
@@ -31,10 +25,8 @@ $ docker run \
     --name nginx-image-server \
     -p 80:80 \
     -p 8090:8090 \
-    -v /tmp/example.jpg:/var/www/nginx/images/example.jpg \
     -e "SERVER_NAME=image.example.com" \
-    -e "S3_HOST=<YOUR-BUCKET-NAME>.s3.amazonaws.com" \
-    quay.io/wantedly/nginx-image-server:latest
+    us.gcr.io/curtmfg/nginx-image-server:latest
 ```
 
 Then you can try image-processing by accessing
@@ -48,7 +40,7 @@ And `http://<YOUR-SERVER.com>:8090/status` retruns the nginx status.
 You can build a docker image includes your own `nginx.conf`:
 
 ```
-FROM quay.io/wantedly/nginx-image-server
+FROM us.gcr.io/curtmfg/nginx-image-server
 COPY nginx.conf /etc/nginx/nginx.conf
 ```
 
@@ -69,7 +61,7 @@ Otherwise your container will stop immediately after starting.
 
 ```bash
 # on your local machine
-$ git clone https://github.com/wantedly/nginx-image-server.git && cd nginx-image-server
+$ git clone https://github.com/curtmfg/nginx-image-server.git && cd nginx-image-server
 $ script/bootstrap
 $ cp .env.sample .env
 ```
@@ -86,13 +78,10 @@ $ vi Dockerfile
 # login to VM and test it
 $ vagrant ssh
 @core-01 $ cd share
-@core-01 $ docker build -t=quay.io/wantedly/nginx-image-server .
+@core-01 $ docker build -t=us.gcr.io/curtmfg/nginx-image-server .
 @core-01 $ script/test
 ```
 
-
-## TEST
-[![wercker status](https://app.wercker.com/status/e1d50221515bacea622f6a6f5f0adde6/s/master "wercker status")](https://app.wercker.com/project/bykey/e1d50221515bacea622f6a6f5f0adde6)
 
 ### Feature(behavior) test
 Behavior test with [infrataster](https://github.com/ryotarai/infrataster).

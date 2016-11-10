@@ -3,7 +3,7 @@ services:
 - docker
 script:
 - docker -v
-- docker build -t quay.io/wantedly/nginx-image-server .
+- docker build -t us.gcr.io/curtmfg/nginx-image-server .
 - script/run -d
 - script/run-infrataster
 notifications:

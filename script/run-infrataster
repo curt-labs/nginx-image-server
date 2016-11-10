@@ -14,4 +14,4 @@ docker run \
   --name infrataster \
   -v $PWD/spec:/test/spec \
   -e TARGET_IP=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' nginx-image-server) \
-  quay.io/wantedly/infrataster:latest
+  us.gcr.io/curtmfg/infrataster:latest
